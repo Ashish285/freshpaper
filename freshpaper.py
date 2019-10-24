@@ -16,7 +16,9 @@ except ImportError:
     # for python2
     from urllib import urlretrieve
     from urllib2 import urlopen, HTTPError, URLError
-
+except Exception as E:
+    print("An exception has occured",E)
+    
 if sys.platform.startswith("win32"):
     import win32api
     import win32con
@@ -172,6 +174,8 @@ def download_image_bing(download_dir, image_extension="jpg"):
     except URLError:
         log.error("Something went wrong..\nMaybe Internet is not working...")
         raise ConnectionError
+    except Exception as E:
+        print("Timeout Error",E)
 
 
 def download_image_nasa(download_dir, image_extension="jpg"):
